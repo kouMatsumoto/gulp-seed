@@ -15,5 +15,11 @@
   "bugs": {
     "url": "https://github.com/kouMatsumoto/gulp-seed/issues"
   },
-  "homepage": "https://github.com/kouMatsumoto/gulp-seed#readme"
+  "homepage": "https://github.com/kouMatsumoto/gulp-seed#readme",
+  "devDependencies": {
+    "@types/gulp": "^3.8.31",
+    "gulp": "^3.9.1",
+    "ts-node": "^1.3.0",
+    "typescript": "^2.0.0"
+  }
 }

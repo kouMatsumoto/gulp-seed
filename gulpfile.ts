@@ -4,5 +4,13 @@
  *
  * This gulpfile is simply loads the tasks inside ./gulp/tasks
  */
+import * as path from 'path';
 
+// Register TS compilation using tsconfig.json.
+require('ts-node').register({
+  project: path.join(__dirname, 'gulp')
+});
+
+// Load gulp tasks
 import './gulp/tasks/default';
+import './gulp/tasks/lint';

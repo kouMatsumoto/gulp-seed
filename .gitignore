@@ -38,3 +38,9 @@ jspm_packages
 
 # IDE files
 .idea/
+
+# distribution files
+dist
+
+# To keep directory
+!.gitkeep

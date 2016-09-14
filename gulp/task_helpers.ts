@@ -1,9 +1,9 @@
 import * as child_process from 'child_process';
-import * as resolveBin from 'resolve-bin';
+var resolveBin = require('resolve-bin');
 
 
 /** Options that can be passed to execTask or execNodeTask. */
-export interface ExecTaskOptions {
+interface ExecTaskOptions {
   // Whether to output to STDERR and STDOUT.
   silent?: boolean;
   // If an error happens, this will replace the standard error.
@@ -11,7 +11,7 @@ export interface ExecTaskOptions {
 }
 
 /** Create a task that executes a binary as if from the command line. */
-export function execTask(binPath: string, args: string[], options: ExecTaskOptions = {}) {
+function execTask(binPath: string, args: string[], options: ExecTaskOptions = {}) {
   return (done: (err?: string) => void) => {
     const childProcess = child_process.spawn(binPath, args);
 

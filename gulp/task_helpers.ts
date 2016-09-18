@@ -1,5 +1,5 @@
 import * as child_process from 'child_process';
-var resolveBin = require('resolve-bin');
+const resolveBin = require('resolve-bin');
 
 
 /** Options that can be passed to execTask or execNodeTask. */
@@ -13,7 +13,7 @@ interface ExecTaskOptions {
 /** Create a task that executes a binary as if from the command line. */
 function execTask(binPath: string, args: string[], options: ExecTaskOptions = {}) {
   return (done: (err?: string) => void) => {
-    const childProcess = child_process.spawn(binPath, args);
+    const childProcess = execSpawn(binPath, args);
 
     if (!options.silent) {
       childProcess.stdout.on('data', (data: string) => {
@@ -65,3 +65,18 @@ export function execNodeTask(packageName: string, executable: string | string[],
     });
   }
 }
+
+/**
+ * If process.platform is win32, exec binPath by node command.
+ *
+ * @param binPath
+ * @param args
+ */
+function execSpawn(binPath: string, args: string[]) {
+  if (process.platform !== 'win32') {
+    return child_process.spawn(binPath, args);
+  }
+
+  args.unshift(binPath);
+  return child_process.spawn('node', args);
+};
